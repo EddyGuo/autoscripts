@@ -15,12 +15,12 @@ for /f "tokens=1,2,* delims= " %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\Cur
 )
 echo The initial value in %evname% is:
 :: 判断初始值中是否已存在该值
-echo %pathall_%|find /i "%path_%" && set isnull=true || set isnull=false
+echo %pathall_%|find /i "%path_%" && set isnull=false || set isnull=true && echo %pathall_%
 echo -----------------------------------------------------------------------
-if not %isnull%==true (
-    reg add "%regpath%" /v %evname% /d "%PathAll_%;%mysqlpath%" /f
+if %isnull%==true (
+    reg add "%regpath%" /v %evname% /d "%pathall_%;%path_%" /f
     echo The path has been saved successfully!
-    echo The new path is:
+    echo The new value in %evname% is:
     echo "%pathall_%;%path_%"
 ) else (
     echo The path has exists!

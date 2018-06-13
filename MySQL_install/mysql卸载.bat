@@ -1,4 +1,8 @@
 @echo off
+echo 以下操作会删除数据库数据！！！
+echo 是否继续，回车以继续
+pause>nul
+echo.
 set MYSQL_HOME=%~dp0
 cd %MYSQL_HOME%
 net stop mysql 1> nul 2> nul && echo MySQL停止服务成功！ || echo MySQL未启动！
